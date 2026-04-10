@@ -1,0 +1,1607 @@
+/* =========================================
+   1. GLOBAL VARIABLES & DESIGN TOKENS
+   ========================================= */
+:root {
+    /* --- Colors --- */
+    --primary-blue: #0056D2;
+    /* Based on primary buttons */
+    --accent-yellow: #FF9F43;
+    /* Based on accents/buttons */
+
+    --text-dark: #333333;
+    /* Base text color */
+    --text-black: #000000;
+    /* Headings */
+    --text-muted: #6C757D;
+    /* Subtitles/paragraphs */
+
+    --bg-white: #FFFFFF;
+    --bg-light-grey: #F8F9FA;
+    /* Used in some sections */
+    --bg-pale-yellow: #FFF8E1;
+    /* Used in the Digital Learning Library section */
+
+    --white: #FFFFFF;
+
+    /* Secondary Accent Colors (from cards) */
+    --card-accent-teal: #20C997;
+    --card-accent-purple: #6F42C1;
+    --card-accent-pink: #E83E8C;
+
+    /* --- Typography --- */
+    /* Swapping default to a stacked sans-serif system font for performance. 
+       You can easily replace this with your chosen Google Font name. */
+    --font-family-base: 'Poppins', sans-serif;
+    --font-family-heading: 'Inter', sans-serif;
+
+    /* --- Spacing --- */
+    --spacing-xs: 10px;
+    --spacing-sm: 20px;
+    --spacing-md: 40px;
+    --spacing-lg: 40px;
+    --spacing-xl: 50px;
+    /* Base vertical padding for sections */
+
+    /* --- Other --- */
+    --border-radius-sm: 8px;
+    /* Used for buttons, cards */
+    --border-radius-lg: 15px;
+    /* Used for larger cards/inputs */
+    --transition-base: all 0.3s ease;
+    --box-shadow-card: 0 4px 15px rgba(0, 0, 0, 0.05);
+    /* Subtle shadow on cards */
+}
+
+/* =========================================
+   2. BASE SETUP & RESETS
+   ========================================= */
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    /* Base REM unit */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    /* Prevents horizontal scrolling issues */
+    font-family: var(--font-family-base);
+    color: var(--text-dark);
+    background-color: var(--bg-white);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+}
+
+/* =========================================
+   3. TYPOGRAPHY SYSTEM
+   ========================================= */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-family-heading);
+    color: var(--text-black);
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+}
+
+/* Base H1 style (Hero Title) */
+h1,
+.text-h1 {
+    font-size: 2.75rem;
+    /* ~44px */
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+/* Base H2 style (Section Titles) */
+h2,
+.text-h2 {
+    font-size: 2.25rem;
+    /* ~36px */
+    line-height: 1.25;
+}
+
+/* Base H3 style */
+h3,
+.text-h3 {
+    font-size: 1.75rem;
+    /* ~28px */
+}
+
+.fs-dynamic {
+    /* Takes your unitless input (e.g., 1.1) and multiplies it by 1rem */
+    /* We add a fallback of '1' (1rem) just in case the variable is missing */
+    font-size: calc(var(--fs, 1) * 1rem) !important;
+}
+
+.fw-dynamic {
+    /* Takes your unitless input (e.g., 1.1) and multiplies it by 1rem */
+    /* We add a fallback of '1' (1rem) just in case the variable is missing */
+    font-weight: calc(var(--fw, 1) * 400) !important;
+}
+
+.border-radius-dynamic {
+    /* Takes your unitless input (e.g., 1.1) and multiplies it by 1rem */
+    /* We add a fallback of '1' (1rem) just in case the variable is missing */
+    border-radius: calc(var(--br, 1) * 1px) !important;
+}
+
+.font-poppins {
+    font-family: var(--font-family-base) !important;
+}
+
+.font-inter {
+    font-family: var(--font-family-heading) !important;
+}
+
+/* Base Paragraphs */
+p {
+    margin-bottom: var(--spacing-sm);
+}
+
+/* Subtitle/Subheading Style */
+.subtitle {
+    font-size: 1.125rem;
+    /* ~18px */
+    color: var(--text-muted);
+    font-weight: 400;
+    margin-bottom: var(--spacing-md);
+}
+
+/* Utility Classes for text color and alignment */
+.text-primary {
+    color: var(--primary-blue) !important;
+}
+
+.text-accent {
+    color: var(--accent-yellow) !important;
+}
+
+.text-muted {
+    color: var(--text-muted) !important;
+}
+
+/* Highlight text utility */
+.text-highlight-accent {
+    position: relative;
+    color: var(--accent-yellow);
+    z-index: 1;
+}
+
+/* =========================================
+   4. LAYOUT UTILITIES
+   ========================================= */
+/* Consistent vertical padding for sections */
+.section-padding {
+    padding: var(--spacing-xl) 0;
+}
+
+/* Background Color Utilities */
+.bg-light {
+    background-color: var(--bg-light-grey) !important;
+}
+
+.bg-primary-light {
+    background-color: var(--bg-pale-yellow) !important;
+}
+
+.bg-white {
+    background-color: var(--bg-white) !important;
+}
+
+/* Custom Container Alignment (Adjusts Bootstrap default slightly if needed) */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1100px;
+    }
+}
+
+/* Vertical Spacers for elements */
+.spacer-sm {
+    margin-bottom: var(--spacing-sm);
+}
+
+.spacer-md {
+    margin-bottom: var(--spacing-md);
+}
+
+.spacer-lg {
+    margin-bottom: var(--spacing-lg);
+}
+
+/* Centered content block utility */
+.content-max-width {
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* =========================================
+   5. REUSABLE COMPONENTS
+   ========================================= */
+
+/* --- Custom Buttons --- */
+.btn-custom {
+    padding: 6px 28px;
+    font-weight: 600;
+    border-radius: var(--border-radius-lg);
+    transition: var(--transition-base);
+    text-transform: capitalize;
+    /* Matches design */
+}
+
+/* Primary Button (Blue) */
+.btn-custom-primary {
+    background-color: var(--primary-blue);
+    color: var(--white);
+    border: 2px solid var(--primary-blue);
+}
+
+.btn-custom-primary:hover,
+.btn-custom-primary:focus {
+    background-color: transparent;
+    color: var(--primary-blue);
+    text-decoration: none;
+}
+
+/* Secondary Button (Yellow) */
+.btn-custom-secondary {
+    background-color: var(--accent-yellow);
+    color: var(--white);
+    border: 2px solid var(--accent-yellow);
+}
+
+.btn-custom-secondary:hover,
+.btn-custom-secondary:focus {
+    background-color: transparent;
+    color: var(--accent-yellow);
+    text-decoration: none;
+}
+
+/* Outline Button (Blue) - used in pricing table */
+.btn-custom-outline {
+    background-color: transparent;
+    color: var(--primary-blue);
+    border: 2px solid var(--primary-blue);
+}
+
+.btn-custom-outline:hover,
+.btn-custom-outline:focus {
+    background-color: var(--primary-blue);
+    color: var(--white);
+    text-decoration: none;
+}
+
+/* --- Cards --- */
+.card-custom {
+    background: var(--bg-white);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--box-shadow-card);
+    padding: var(--spacing-md);
+    border: none;
+    height: 100%;
+    /* Important for equal height in Bootstrap grids */
+}
+
+/* Featured card type (like in 'Digital Learning Library') */
+.card-featured {
+    border-top: 5px solid;
+    padding-top: 15px;
+    /* Adjusting top padding to accommodate border */
+}
+
+/* Specific Card Border Color Modifiers */
+.card-border-teal {
+    border-top-color: var(--card-accent-teal);
+}
+
+.card-border-purple {
+    border-top-color: var(--card-accent-purple);
+}
+
+.card-border-pink {
+    border-top-color: var(--card-accent-pink);
+}
+
+/* --- Forms (Hero Section) --- */
+.form-control-custom {
+    border-radius: var(--border-radius-sm);
+    padding: 12px 18px;
+    border: 1px solid #004ADE;
+    height: 50px;
+}
+
+.form-control-custom:focus {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 0.2rem rgba(0, 86, 210, 0.1);
+}
+
+/* --- Images --- */
+.img-wrapper {
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    margin-bottom: var(--spacing-md);
+}
+
+/* --- Misc Utilities --- */
+/* Simple overlay used in some background images (like pricing or institutional sections) */
+.overlay-dark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 0;
+}
+
+/* =========================================
+   6. RESPONSIVE ADJUSTMENTS (Base)
+   ========================================= */
+@media (max-width: 991.98px) {
+
+    /* Large Tablets/Desktops */
+    h1,
+    .text-h1 {
+        font-size: 2.25rem;
+    }
+
+    h2,
+    .text-h2 {
+        font-size: 1.85rem;
+    }
+
+    .section-padding {
+        padding: var(--spacing-lg) 0;
+    }
+}
+
+@media (max-width: 767.98px) {
+
+    /* Mobile/Small Tablets */
+    html {
+        font-size: 15px;
+    }
+
+    /* Slightly reduce base text size */
+    h1,
+    .text-h1 {
+        font-size: 1.6rem;
+    }
+
+    div.badge-pill-rotated {
+        font-size: 0.9rem;
+    }
+
+    .section-heading {
+        font-size: 1.5rem !important;
+    }
+
+    .section-subheading {
+        font-size: 1rem !important;
+    }
+
+    h2,
+    .text-h2 {
+        font-size: 1.6rem;
+    }
+}
+
+/* =========================================
+   7. ANIMATION (Motion.dev Base)
+   ========================================= */
+/* Class for elements that will be initially hidden by Motion.dev 
+   to prevent layout shift (FOUC). */
+.motion-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+
+
+
+
+#site-header {
+    /* Ensures the shadow fades in smoothly */
+    transition: box-shadow 0.3s ease, padding 0.3s ease;
+}
+
+/* This class will be added by our JavaScript when scrolling */
+#site-header.scrolled {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    /* Pro-tip: Slightly reducing padding on scroll makes the sticky nav feel sleeker */
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+}
+
+
+/* =========================================
+   FOOTER STYLES
+   ========================================= */
+.site-footer {
+    background-color: #2F3844;
+    /* Dark slate background from Figma */
+    color: #fff;
+    /* Light muted text */
+}
+
+.site-footer .footer-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+/* Social Icon Squares */
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    margin-right: 12px;
+    transition: all 0.3s ease;
+}
+
+/* Removes margin from the last icon so it aligns perfectly right */
+.social-links .social-icon:last-child {
+    margin-right: 0;
+}
+
+.social-icon:hover {
+    text-decoration: none;
+}
+
+.social-icon:hover svg {
+    text-decoration: none;
+}
+
+/* Contact Link */
+.footer-link {
+    transition: all 0.3s ease;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}
+
+/* Mobile Alignment Fixes */
+@media (max-width: 991.98px) {
+    .site-footer .social-links {
+        justify-content: flex-start !important;
+    }
+
+    .floating-badge {
+        display: none !important;
+    }
+}
+
+
+
+
+
+/* =========================================
+   HERO / BANNER BACKGROUND
+   ========================================= */
+
+/* Desktop Background (Default) */
+.hero-banner-bg {
+    background-image: url('../images/banner-image.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* Optional: If the background is too light and washes out the text, 
+       you can add a subtle overlay here later */
+}
+
+/* Mobile Background Swap */
+@media (max-width: 767.98px) {
+    .hero-banner-bg {
+        background-image: url('../images/banner-image-mobile.webp');
+        /* Adjusting position for mobile if the focal point changes */
+        background-size: contain;
+        background-position: top;
+    }
+}
+
+/* Hero Form Card Adjustments */
+.form-card {
+    border: 2px solid #FFF2D1;
+    background-color: #FFFCF6;
+    max-width: 480px;
+}
+
+.form-card .btn-custom-secondary {
+    color: var(--text-black) !important;
+    font-weight: 700;
+}
+
+/* Validation Styling (Optional but recommended for user feedback) */
+.form-control-custom:valid {
+    border-color: #28a745;
+    /* Green border when filled correctly */
+}
+
+.form-control-custom:invalid:focus {
+    border-color: #dc3545;
+    /* Red border if filled incorrectly and focused */
+}
+
+
+
+/* =========================================
+   FLOATING BADGES (HERO IMAGE)
+   ========================================= */
+
+.floating-badge {
+    position: absolute;
+    background: var(--bg-white);
+    padding: 8px 16px 8px 8px;
+    /* Slightly less padding on the left near the circle */
+    border-radius: 50px;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    /* Nice soft shadow from Figma */
+}
+
+/* Modifier for the middle left badge where text is on the left */
+.floating-badge.flex-row-reverse {
+    padding: 8px 8px 8px 16px;
+}
+
+/* The Colored Circle Wrapper for the SVGs */
+.badge-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+/* Icon Background Colors */
+.bg-warning-custom {
+    background-color: #F49D07;
+}
+
+.bg-danger-custom {
+    background-color: #FF4800;
+}
+
+/* Orange/Yellow from image */
+.bg-primary-custom {
+    background-color: #0F67F5;
+}
+
+/* Typography inside the badge */
+.badge-text {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-black);
+    line-height: 1.2;
+    text-align: left;
+}
+
+/* Positioning based exactly on your Figma layout */
+.badge-top-right {
+    top: -8%;
+    right: 15%;
+}
+
+.badge-mid-left {
+    top: 60%;
+    left: -15%;
+    padding-left: 20px !important;
+}
+
+.badge-bottom-right {
+    bottom: -5%;
+    right: 0%;
+}
+
+.badge-wrapper {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+}
+
+/* Mobile Adjustments so they don't break the screen width */
+@media (max-width: 991.98px) {
+    .badge-top-right {
+        top: 0%;
+        right: 0%;
+    }
+
+    .badge-mid-left {
+        top: 50%;
+        left: 0%;
+    }
+
+    .badge-bottom-right {
+        bottom: 0%;
+        right: 10%;
+    }
+
+    /* Slightly scale down on mobile */
+    .floating-badge {
+        transform: scale(0.9);
+    }
+}
+
+/* =========================================
+   CUSTOM SELECT DROPDOWNS
+   ========================================= */
+
+select.form-control-custom {
+    /* 1. Strip away the ugly default browser arrow */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    /* 2. Inject your custom SVG arrow */
+    /* Note: I changed the fill to %23333333 (Dark Grey) to match standard text, 
+       but you can change it to %23000000 for pure black */
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg width='35' height='18' viewBox='0 0 35 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M16.0258 14.4681L8.02887 6.41322L10.0422 4.41435L17.0397 11.4625L24.0879 4.46506L26.0868 6.47842L18.0319 14.4753C17.7649 14.7403 17.4035 14.8885 17.0273 14.8871C16.6511 14.8857 16.2909 14.735 16.0258 14.4681Z' fill='%23333333'/%3E%3C/svg%3E");
+
+    /* 3. Position the arrow nicely on the right side */
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 14px;
+    /* Scales the arrow down slightly to fit the input box cleanly */
+
+    /* 4. Add padding so the selected text doesn't overlap the new arrow */
+    padding-right: 40px;
+
+    /* Optional: Makes the cursor a pointer so it feels clickable */
+    cursor: pointer;
+}
+
+/* Fix for older versions of IE/Edge that ignore appearance: none */
+select.form-control-custom::-ms-expand {
+    display: none;
+}
+
+
+.form-control-custom.is-invalid {
+    border-color: #dc3545 !important;
+}
+
+
+
+
+
+
+/* SECTION 2 */
+
+/* =========================================
+   REUSABLE TYPOGRAPHY & COMPONENTS
+   ========================================= */
+.section-heading {
+    font-family: var(--font-family-heading);
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    /* Responsive font scaling */
+    font-weight: 800;
+    color: var(--text-black);
+}
+
+.section-subheading {
+    font-size: 1.4rem;
+    color: #000000;
+    /* Medium grey */
+    margin: 0 auto;
+    font-family: var(--font-family-heading);
+}
+
+.text-highlight-green {
+    color: #20A837;
+    /* Figma green */
+}
+
+.badge-pill-rotated {
+    display: inline-block;
+    padding: 6px 20px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    transform: rotate(-3deg);
+    /* Slight tilt from Figma */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* =========================================
+   FEATURES SECTION (Cards & Swiper)
+   ========================================= */
+
+/* Ensure Swiper slides stretch to equal heights */
+.features-swiper .swiper-slide {
+    height: auto;
+}
+
+.feature-card {
+    border-radius: 20px;
+    /* MASSIVE top padding to push the text down and make room for the large image */
+    padding: 180px 2rem 1rem 2rem;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Increased top margin so the larger image doesn't get cut off by the section above */
+    margin-top: 20px;
+
+    /* FLEXBOX FIX FOR EQUAL HEIGHTS */
+    display: flex;
+    flex-direction: column;
+    /* This pushes the text block to the bottom, ensuring all titles align perfectly */
+    /* justify-content: flex-end;  */
+    height: 100%;
+    /* Forces the card to fill the entire Swiper slide */
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    /* border-radius: 13px; */
+}
+
+/* Beautiful Hover Animation */
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Unicorn Image Pop-out - SCALED UP */
+.feature-unicorn {
+    position: absolute;
+    top: -45px;
+    /* Tweak this if they sit too high or low */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    max-width: 240px;
+    height: auto;
+    z-index: 2;
+    transition: transform 0.4s ease;
+}
+
+/* Optional: Slight image bounce on card hover */
+.feature-card:hover .feature-unicorn {
+    transform: translateX(-50%) translateY(-5px) scale(1.05);
+}
+
+/* Card Colors */
+.card-blue {
+    background-color: #00AEEF;
+}
+
+.card-purple {
+    background-color: #6648FF;
+}
+
+.card-pink {
+    background-color: #FF2B7A;
+}
+
+/* Swiper Pagination Styling (Orange Pill shape) */
+
+.features-swiper {
+    padding-bottom: 50px !important;
+    /* Ensures space between cards and dots */
+}
+
+.features-swiper .swiper-pagination {
+    bottom: -5px !important;
+    /* Locks dots to the bottom of the container */
+}
+
+.features-swiper .swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+    background: #CBD5E1;
+    /* Inactive grey */
+    opacity: 1;
+    margin: 0 5px !important;
+    /* The exact gap between the dots */
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.features-swiper .swiper-pagination-bullet-active {
+    width: 24px;
+    /* Stretches it into a pill */
+    border-radius: 10px;
+    /* Perfectly rounded pill edges */
+    background: #F89B29;
+    /* Active orange from screenshot */
+}
+
+/* =========================================
+   FLOATING BACKGROUND SHAPES (SMOOTH CSS)
+   ========================================= */
+.bg-shape {
+    position: absolute;
+    z-index: 1;
+    /* Apply the smooth animation. 6 seconds total, smooth ease, infinite loop */
+    animation: floatSmooth 6s ease-in-out infinite;
+}
+
+.bg-shape.no-animation {
+    animation: unset;
+}
+
+/* The Buttery-Smooth Keyframe Animation */
+@keyframes floatSmooth {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-25px) rotate(8deg);
+    }
+
+    /* Floats up and tilts slightly */
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    /* Returns perfectly to start */
+}
+
+/* --- Sizing, Positioning & Staggered Delays --- */
+/* Note: We use negative animation delays (e.g., -2s) so they start immediately but out of sync */
+
+/* Left Side */
+.shape-tl-star {
+    top: 54%;
+    left: 2%;
+    width: 70px;
+    animation-delay: 0s;
+}
+
+.shape-ml-pencil {
+    top: 20%;
+    left: 5%;
+    width: 90px;
+    animation-delay: -1.5s;
+    opacity: 0.8;
+}
+
+.shape-bl-loop {
+    bottom: 25%;
+    left: 0%;
+    width: 80px;
+    animation-delay: -3s;
+}
+
+.shape-bl-globe {
+    bottom: 3%;
+    left: 2%;
+    width: 70px;
+    animation-delay: -4.5s;
+    opacity: 0.6;
+}
+
+/* Right Side */
+.shape-tr-trophy {
+    top: 10%;
+    right: 15%;
+    width: 75px;
+    animation-delay: -1s;
+    opacity: 0.8;
+}
+
+.shape-mr-squiggle {
+    top: 35%;
+    right: 0%;
+    width: 80px;
+    animation-delay: -2.5s;
+}
+
+.shape-br-star {
+    bottom: 26%;
+    right: 2%;
+    width: 60px;
+    animation-delay: -4s;
+}
+
+.shape-br-bubble {
+    bottom: 3%;
+    right: 1%;
+    width: 65px;
+    animation-delay: -5.5s;
+    opacity: 0.7;
+}
+
+/* Mobile Cleanup: Hide them on mobile so it doesn't look cluttered behind the slider */
+/* Mobile Adjustments: Scale shapes down instead of hiding them */
+@media (max-width: 991.98px) {
+    .bg-shape {
+        /* Shrinks the shapes to 60% of their size on mobile so they don't overlap text */
+        /* transform: scale(0.6);  */
+        display: none;
+    }
+
+    /* Optional: If specific shapes get in the way on mobile, you can hide just those */
+    .shape-tl-star,
+    .shape-br-bubble {
+        /* display: none;  */
+    }
+}
+
+
+/* =========================================
+   TEACHERS SECTION
+   ========================================= */
+
+.text-purple {
+    color: #815EEE;
+}
+
+.teachers-section {
+    position: relative;
+    z-index: 1;
+    background: url('../images/teachers-bg.png');
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
+    padding-top: 100px;
+}
+
+/* The Colored Backdrop Circles */
+.teacher-img-wrapper {
+    position: relative;
+    width: 220px;
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+/* The actual teacher image inside the backdrop */
+.teacher-img-wrapper img {
+    width: 100%;
+}
+
+/* Typography refinements */
+.teacher-card p.text-muted {
+    color: #6B7280 !important;
+    /* Slightly darker grey for better readability */
+}
+
+p.text-dark {
+    color: #000000 !important;
+}
+
+.teacher-nav-arrow::after {
+    display: none;
+}
+
+/* Custom Swiper Arrows for the Teachers Section */
+.teachers-swiper {
+    position: relative;
+    /* Keep this relative so arrows stay inside */
+    padding-bottom: 60px;
+}
+
+.teacher-nav-arrow {
+    color: #333333 !important;
+    /* Force the arrows to align exactly with the center of the 220px image */
+    top: 35% !important;
+    margin-top: 0 !important;
+}
+
+/* Makes the arrows thicker to match your design */
+.teacher-nav-arrow::after {
+    font-size: 1.5rem !important;
+    /* Slightly smaller for mobile */
+    font-weight: 800;
+}
+
+/* Push the arrows slightly outward on larger screens so they don't overlap the image */
+@media (min-width: 768px) {
+    .teacher-nav-arrow::after {
+        font-size: 1.8rem !important;
+    }
+
+    .teachers-swiper .swiper-button-prev {
+        left: 0px;
+    }
+
+    .teachers-swiper .swiper-button-next {
+        right: 0px;
+    }
+}
+
+@media (max-width: 767.98px) {
+
+    /* Tighten up the arrows on mobile so they flank the image nicely */
+    .teachers-swiper .swiper-button-prev {
+        left: 10px;
+    }
+
+    .teachers-swiper .swiper-button-next {
+        right: 10px;
+    }
+}
+
+/* Re-use the orange pill pagination logic for this slider too */
+.teachers-swiper .swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+    background: #CBD5E1;
+    opacity: 1;
+    margin: 0 5px !important;
+    transition: all 0.3s ease;
+}
+
+.teachers-swiper .swiper-pagination-bullet-active {
+    width: 24px;
+    border-radius: 10px;
+    background: #F89B29;
+}
+
+
+/* =========================================
+   CTA BANNER SECTION (Speaking Well)
+   ========================================= */
+
+.cta-banner-bg {
+    /* Add your exported purple wave image here */
+    background-image: url('../images/purple-bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding-bottom: 90px !important;
+}
+
+/* Typography Scaling */
+.cta-subheading {
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+}
+
+.cta-heading {
+    font-family: var(--font-family-heading);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+}
+
+/* The Yellow Button */
+.btn-warning-custom {
+    background-color: #FFC200;
+    /* Rich yellow from Figma */
+    color: #000000;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.btn-warning-custom:hover {
+    background-color: #E6AF00;
+    /* Slightly darker on hover */
+    transform: translateY(-2px);
+    color: #000000;
+}
+
+/* =========================================
+   FLOATING STUDENTS
+   ========================================= */
+.floating-student {
+    position: absolute;
+    z-index: 3;
+}
+
+.floating-student img {
+    /* Creates that thick, slightly darker purple border around the photos */
+    border: 10px solid #594EFF;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    background-color: #ffffff;
+    /* Just in case your PNGs have transparent edges */
+    object-fit: cover;
+}
+
+/* Precise Positioning based on Desktop Screenshot */
+.student-tl {
+    top: -80px;
+    left: 5%;
+    width: 110px;
+}
+
+.student-bl {
+    bottom: -79px;
+    left: 10%;
+    width: 200px;
+}
+
+.student-tr {
+    top: 0%;
+    right: 0%;
+    width: 100px;
+}
+
+.student-br {
+    bottom: 10px;
+    right: 25%;
+    width: 90px;
+}
+
+/* Scale them safely inside the container for Mobile so they don't cover text */
+@media (max-width: 991.98px) {
+    .student-tl {
+        top: -60px;
+        left: 3%;
+        width: 70px;
+    }
+
+    .student-bl {
+        bottom: -20px;
+        left: 5%;
+        width: 100px;
+    }
+
+    .student-tr {
+        top: 10%;
+        right: 5%;
+        width: 80px;
+    }
+
+    .student-br {
+        bottom: 5px;
+        right: 5%;
+        width: 70px;
+    }
+}
+
+@media (max-width: 575.98px) {
+
+    /* On very small phones, hide the two smallest ones to keep the text readable */
+    .student-bl,
+    .student-tr {
+        display: none;
+    }
+
+    #site-header .btn-custom-primary {
+        padding: 6px 16px;
+     }
+}
+
+
+
+/* =========================================
+   SCHOOLS & INSTITUTIONS SECTION
+   ========================================= */
+
+.schools-section {
+    /* Apply your exported background image showing the blurred classroom */
+    background-image: url('../images/bg-schools-classroom.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    /* Ensure the section has enough height to show off the background image */
+    min-height: 600px;
+
+    /* Creates a stacking context so the white card sits clearly above the background */
+    z-index: 1;
+}
+
+/* Helper to ensure text/cards sit above any potential background overlays */
+.z-index-2 {
+    z-index: 2;
+    position: relative;
+}
+
+/* Subtle typography tweaks for this specific card */
+.schools-section .font-weight-medium {
+    font-weight: 500;
+}
+
+/* Ensure the blue button matches the exact shade from Figma */
+.schools-section .btn-primary {
+    background-color: #2563EB;
+    /* Deep royal blue */
+    border-color: #2563EB;
+    border-radius: 8px;
+    /* Slightly softer corners than standard buttons */
+}
+
+.schools-section .btn-primary:hover {
+    background-color: #1D4ED8;
+    border-color: #1D4ED8;
+}
+
+/* Mobile specific background adjustment if needed */
+@media (max-width: 767.98px) {
+    .schools-section {
+        /* On mobile, you might want to shift the image focus slightly */
+        background-position: center top;
+        padding-top: 3rem !important;
+        min-height: auto;
+    }
+}
+
+/* =========================================
+   SCHOOLS ICONS (BLUE CIRCLE BORDERS)
+   ========================================= */
+.icon-circle-border {
+    width: 60px;
+    /* Adjust this slightly if you need them larger/smaller */
+    height: 60px;
+    border: 2px solid #2563EB;
+    /* The exact instrucko blue */
+    border-radius: 50%;
+    /* Makes it a perfect circle */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+}
+
+.icon-circle-border img {
+    /* Scales your inner icon so it fits nicely inside the new border with some breathing room */
+    max-width: 30px;
+    height: auto;
+}
+
+/* Add a transition to your existing icon circle */
+.icon-circle-border {
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Bouncy transition */
+}
+
+/* When the user hovers over the row item, make the icon pop! */
+.school-feature-item:hover .icon-circle-border {
+    transform: scale(1.15);
+    /* Slightly enlarges the circle */
+    background-color: rgba(37, 99, 235, 0.05);
+    /* Very light blue fill */
+    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.2);
+    /* Soft blue glow */
+    border-width: 3px;
+    /* Makes the border slightly bolder */
+}
+
+/* Optional: change the cursor to a pointer if you want it to feel clickable */
+.school-feature-item {
+    cursor: default;
+}
+
+/* Safe starting state for motion.dev animations */
+.motion-hidden {
+    opacity: 0;
+    visibility: hidden;
+    /* Do NOT use display: none; here */
+}
+
+
+/* =========================================
+   TESTIMONIALS SECTION
+   ========================================= */
+
+/* Background */
+.testimonials-bg {
+    background: url('../images/yello-bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* The specific coral color for "Hearts" and the user's name */
+.text-coral {
+    color: #FF5A5F;
+}
+
+/* =========================================
+   TESTIMONIALS SLIDER - EQUAL HEIGHT & EFFECTS
+   ========================================= */
+
+/* 1. Force Swiper to stretch all slides to match the tallest one */
+.testimonials-swiper .swiper-wrapper {
+    align-items: stretch;
+}
+
+.testimonials-swiper .swiper-slide {
+    height: auto !important;
+    /* Required for align-items: stretch to work */
+}
+
+/* 2. Card Styling & Flexbox */
+.review-card {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.02);
+    display: flex;
+    flex-direction: column;
+
+    /* Animation settings for the active/inactive states */
+    transition: all 0.5s ease-in-out;
+    transform-origin: center left;
+    border-radius: 10px;
+}
+
+/* 3. Push the bottom content down if text heights vary */
+.review-card>p {}
+
+.review-card>a {
+    margin-top: auto;
+    /* Fallback to ensure the link hugs the bottom */
+}
+
+
+/* =========================================
+   CUSTOM ARROWS & PAGINATION
+   ========================================= */
+
+/* --- THE STRAIGHT ARROWS --- */
+.testimonial-arrow-custom {
+    position: static !important;
+    /* Stops Swiper from absolutely positioning them */
+    width: auto !important;
+    height: auto !important;
+    margin-top: 0 !important;
+}
+
+/* Hide Swiper's default blue arrow icons */
+.testimonial-arrow-custom::after {
+    display: none !important;
+}
+
+/* Hover effect on arrows (makes the grey arrow darker on hover) */
+.swiper-button-prev.testimonial-arrow-custom:hover svg path {
+    stroke: #111827;
+}
+
+/* Mobile Swiper Pagination (Orange Pills) */
+.testimonials-swiper .swiper-pagination-bullet {
+    width: 6px;
+    height: 6px;
+    background: #CBD5E1;
+    opacity: 1;
+    margin: 0 4px !important;
+    transition: all 0.3s ease;
+}
+
+.testimonials-swiper .swiper-pagination-bullet-active {
+    width: 20px;
+    border-radius: 10px;
+    background: #F89B29;
+}
+
+@media screen and (min-width:991px) {
+
+    /* 4. State for INACTIVE slides (the peeking next/prev cards) */
+    .testimonials-swiper .swiper-slide:not(.swiper-slide-active) .review-card {
+        transform: scale(0.85);
+        /* Scale down */
+        opacity: 0.4;
+        /* Fade out */
+        filter: blur(2px);
+        /* Soft blur */
+    }
+
+    /* 5. State for the ACTIVE slide (in focus) */
+    .testimonials-swiper .swiper-slide-active .review-card {
+        transform: scale(1);
+        /* Full size */
+        opacity: 1;
+        /* Fully visible */
+        filter: blur(0);
+        /* Sharp and clear */
+    }
+}
+
+
+/* =========================================
+   OUR PARTNERS SECTION
+   ========================================= */
+
+/* The squiggly line positioned under the text */
+.partner-squiggle {
+    position: absolute;
+    bottom: -10px;
+    right: 0;
+}
+
+/* --- THE LOGO CENTERING FIX --- */
+.partner-logo-box {
+    height: 100px; /* Forces all logo containers to be the exact same height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 15px;
+}
+
+.partner-logo-box img {
+    max-height: 80px; /* Prevents tall logos from becoming too massive */
+    max-width: 100%;
+    width: auto;
+    object-fit: contain; /* Ensures aspect ratios are strictly maintained */
+    /* Optional: Add a slight grayscale that turns to full color on hover for a premium feel */
+    /* filter: grayscale(100%); opacity: 0.7; transition: all 0.3s ease; */
+}
+
+/* Optional hover effect un-comment if used above */
+/* .partner-logo-box:hover img { filter: grayscale(0%); opacity: 1; } */
+
+/* --- SIMPLE BLUE ARROWS --- */
+.partner-nav-arrow {
+   top: 35% !important;
+    /* transform: translateY(-50%); */
+    width: 20px !important;
+    height: 20px !important;
+    background: transparent;
+}
+
+.partner-nav-arrow::after {
+    display: none !important; /* Hide default Swiper icons */
+}
+
+.partners-section .swiper-button-prev { left: 0; }
+.partners-section .swiper-button-next { right: 0; }
+
+/* Swiper Pagination Re-use */
+.partners-swiper .swiper-pagination-bullet {
+    width: 6px;
+    height: 6px;
+    background: #CBD5E1;
+    opacity: 1;
+    margin: 0 4px !important;
+    transition: all 0.3s ease;
+}
+
+.partners-swiper .swiper-pagination-bullet-active {
+    width: 20px;
+    border-radius: 10px;
+    background: #F89B29; /* Active Orange Pill */
+}
+
+
+
+/* =========================================
+   LIVE CLASSES SECTION (Global)
+   ========================================= */
+.text-pink { color: #F43F5E; }
+.pink-squiggle {
+    position: absolute;
+    bottom: -8px;
+    right: 0;
+}
+
+/* =========================================
+   DESKTOP SLIDER STYLES
+   ========================================= */
+.live-class-card {
+    border: 2px solid #E5E7EB; /* Distinct border */
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+.live-class-card:hover {
+    box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+    border-color: #2563EB; /* Subtle blue highlight on hover */
+}
+
+/* Force the image wrapper to have a purple border like the design */
+.card-img-wrapper {
+    border-bottom: 2px solid #E5E7EB;
+}
+.card-img-wrapper img {
+    border-radius: 20px 20px 0 0; /* Rounds only the top corners */
+    object-fit: cover;
+    max-height: 220px;
+}
+
+/* The Orange 'Live + Interactive' Badge */
+.live-badge {
+    position: absolute;
+    top: 20px;
+    right: -10px; /* Slight overhang */
+    background: #FF6B35;
+    color: #FFFFFF;
+    padding: 6px 16px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    box-shadow: 0 4px 10px rgba(255, 107, 53, 0.3);
+}
+
+/* Tiny circular icons next to the age pill */
+.course-icon-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.bg-light-red { background-color: #FEE2E2; }
+.bg-light-blue-icon { background-color: #DBEAFE; }
+
+/* The Age Pill */
+.age-pill {
+    border: 1px solid #695FFF;
+    border-radius: 10px;
+    padding: 4px 14px;
+    color: #374151;
+}
+
+/* The Blue Skills List */
+.skill-pill {
+    background-color: #B6F0FF; /* Very pale cyan/blue */
+    color: #0284C7; /* Darker blue text */
+    padding: 8px 16px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    width: 100%; /* Makes them stretch to fill the area */
+}
+
+/* Large Blue Chevron Arrows */
+.classes-nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    margin-top: -25px;
+    z-index: 10;
+    cursor: pointer;
+}
+.classes-nav-arrow::after { display: none !important; }
+.classes-prev { left: -60px; }
+.classes-next { right: -60px; }
+
+@media (max-width: 1200px) {
+    /* Pull arrows inside slightly on smaller tablets */
+    .classes-prev { left: -20px; }
+    .classes-next { right: -20px; }
+}
+
+/* =========================================
+   MOBILE GRID STYLES
+   ========================================= */
+
+/* The Category Divider Pills */
+.mobile-category-pill {
+    background: #FFFFFF;
+    padding: 6px 30px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #111827;
+}
+
+/* Category Border Colors */
+.border-yellow { border: 2px solid #FBBF24; }
+.border-pink { border: 2px solid #F43F5E; }
+.border-blue { border: 2px solid #3B82F6; }
+
+/* The Square Mobile Cards */
+.mobile-class-card {
+    border-radius: 6px;
+    padding: 14px;
+    height: 150px; /* Fixed height for perfect uniformity */
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+}
+
+/* Specific Background Colors from Design */
+.bg-card-blue { background-color: #E0F2FE; }   /* Light Blue */
+.bg-card-yellow { background-color: #FEF3C7; } /* Light Yellow */
+.bg-card-orange { background-color: #FFEDD5; } /* Light Orange (For Maths) */
+.bg-card-pink { background-color: #FFF7FA; }   /* Light Pink */
+.bg-card-green { background-color: #DCFCE7; }  /* Light Green */
+.bg-card-purple { background-color: #F3E8FF; } /* Light Purple */
+
+/* The Bottom Illustrations (Transparent PNGs) */
+.mobile-card-ill {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width:100%; /* Adjusts the width of the PNG */
+    max-height: 65%; /* Ensures the image never creeps up over the text */
+    /* object-fit: contain; */
+    object-position: bottom; /* Locks the image to the bottom edge */
+    z-index: 1;
+}
