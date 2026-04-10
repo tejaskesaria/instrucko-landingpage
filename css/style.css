@@ -696,4 +696,5 @@ select.form-control-custom::-ms-expand { display: none; }
     .pink-squiggle{right: 2.1rem;}
     .teachers-section{padding-top: 10px !important}
     .children-image{transform: translateY(0);}
+    .cta-banner-sectio{overflow-x: hidden;}
 }
